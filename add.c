@@ -13,8 +13,8 @@ void add_func(stack_t **head, int value)
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		printf("Error\n");
-		exit(0);
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
 	}
 	if (h)
 		h->prev = new;
@@ -33,24 +33,24 @@ void add_queue(stack_t **head, int value)
 {
 	stack_t *h, *new;
 
-	h = *head;
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
-		printf("Error\n");
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit (EXIT_FAILURE);
+	}
 	new->n = value;
 	new->next = NULL;
-	if (h)
+	if (*head == NULL)
 	{
-		while (h->next)
-			h = h->next;
-	}
-	if (!h)
-	{
-		*head = new;
 		new->prev = NULL;
+		*head = new;
 	}
 	else
 	{
+		h = *head;
+		while (h->next != NULL)
+			h = h->next;
 		h->next = new;
 		new->prev = h;
 	}

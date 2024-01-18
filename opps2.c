@@ -41,3 +41,10 @@ void nop_node(stack_t **head, unsigned int count)
 	(void) count;
 	(void) head;
 }
+/**
+ *
+ *
+ *
+ *
+ */
+
